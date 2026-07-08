@@ -100,7 +100,7 @@ public class TrayAppContext : ApplicationContext
           _ => "unknown"
       };
       if (pos == "unknown") return "";
-      return $"https://raw.communitydragon.org/latest/game/assets/ux/lol/rolequest_icon{MapPositionToImageKey(pos)}32.png";
+      return $"https://raw.communitydragon.org/latest/game/assets/ux/lol/rolequest_icon{pos}32.png";
   }
 
   private static readonly Dictionary<string, string> MapNames = new()
