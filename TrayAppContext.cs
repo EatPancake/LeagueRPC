@@ -126,7 +126,7 @@ public class TrayAppContext : ApplicationContext
   private static string GetSkinNumString(string? skinNum, string? championName)
   {
     if (skinNum == null || championName == null) return  "";
-    if ((championName.ToLower() == "hecarim" || championName.ToLower() == "ahri" || championName.ToLower() == "zyra") && skinNum == "0") return "_0";
+    if ((championName.ToLower() == "hecarim" || championName.ToLower() == "ahri" || championName.ToLower() == "zyra" || championName.ToLower() == "lulu") && skinNum == "0") return "_0";
     if (skinNum == "0") return  "";
 
     return "_" + skinNum;
