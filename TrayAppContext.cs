@@ -123,11 +123,41 @@ public class TrayAppContext : ApplicationContext
       return MapNames.TryGetValue(mapName, out var map) ? map : mapName;
   }
 
+// All these champions follow a different naming format for default skin using _0 instead of no ending
+  private static readonly HashSet<string> SpecialChampions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "ahri", "akali", "akshan", "ambessa", "amumu", "aphelios", "aurelionsol",
+        "aurora", "azir", "bard", "belveth", "brand", "briar", "caitlyn",
+        "cassiopeia", "corki", "darius", "diana", "drmundo", "ekko", "ezreal",
+        "fiddlesticks", "fizz", "gwen", "hecarim", "hwei", "irelia", "janna",
+        "jarvaniv", "jax", "jhin", "kalista", "kassadin", "kayle", "kayn",
+        "khazix", "kindred", "kogmaw", "ksante", "leblanc", "leesin", "leona",
+        "lillia", "lissandra", "lucian", "lulu", "lux", "masteryi", "mel",
+        "milio", "missfortune", "mordekaiser", "morgana", "nami", "nautilus",
+        "neeko", "nilah", "nocturne", "nunu", "pantheon", "pyke", "qiyana",
+        "rammus", "rell", "renata", "renekton", "rengar", "ryze", "samira",
+        "sejuani", "senna", "seraphine", "sett", "shyvana", "singed", "sivir",
+        "skarner", "smolder", "sona", "soraka", "swain", "sylas", "syndra",
+        "tahmkench", "talon", "teemo", "thresh", "tryndamere", "twistedfate",
+        "udyr", "varus", "vex", "viktor", "vladimir", "volibear", "warwick",
+        "xinzhao", "yone", "yunara", "yuumi", "zaahen", "zed", "zeri",
+        "zilean", "zyra"
+    };
+
+
   private static string GetSkinNumString(string? skinNum, string? championName)
   {
     if (skinNum == null || championName == null) return  "";
-    if ((championName.ToLower() == "hecarim" || championName.ToLower() == "ahri" || championName.ToLower() == "zyra" || championName.ToLower() == "lulu") && skinNum == "0") return "_0";
-    if (skinNum == "0") return  "";
+
+    if (SpecialChampions.Contains(championName) && skinNum == "0")
+    {
+        return "_0";
+    }
+
+    if (skinNum == "0")
+    {
+        return  "";
+    }
 
     return "_" + skinNum;
   }
